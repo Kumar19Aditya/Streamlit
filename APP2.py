@@ -2,9 +2,9 @@ import streamlit as st
 from PIL import Image
 
 # Page Configuration
-st.set_page_config(page_title="Kumar Aditya | Portfolio", page_icon="🎯", layout="wide")
+st.set_page_config(page_title="Kumar Aditya | Portfolio", layout="wide")
 
-# Sidebar Style
+# Sidebar Style with Red Selection Effect
 st.markdown("""
     <style>
     .sidebar .sidebar-content { padding: 0; }
@@ -13,7 +13,7 @@ st.markdown("""
         color: white;
         border: 1px solid #444;
         border-radius: 8px;
-        padding: 10px;
+        padding: 15px;
         margin: 10px 0;
         text-align: center;
         font-weight: bold;
@@ -30,43 +30,36 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Sidebar Navigation Logic
+# Sidebar Options
 options = [
-    "Home", "Career Objective", "Education", "Skills & Technology", 
-    "Internships", "Projects", "Certifications", 
+    "Home", "Career Objective", "Education", "Skills & Technology",
+    "Internships", "Projects", "Certifications",
     "Soft Skills & Hobbies", "Personal Information"
 ]
 
-# Create empty container for sidebar options to use dynamic styling
-selected_option = st.sidebar.empty()
-selected = None
+# Create Sidebar with Selection Logic
+selected = st.sidebar.radio("", options, index=0, format_func=lambda x: f"📌 {x}")
 
-# Render the sidebar with interactive boxes
-for option in options:
-    if selected == option:
-        selected_option.markdown(f'<div class="box selected">{option}</div>', unsafe_allow_html=True)
-    else:
-        if st.sidebar.button(option):
-            selected = option
-            selected_option.markdown(f'<div class="box selected">{option}</div>', unsafe_allow_html=True)
-            break  # Stop after selecting one option
-
-# Display Content Based on Selection
+# Dynamic Content Based on Selection
 def display_content(option):
     if option == "Home":
-        st.subheader("Welcome to my Portfolio!")
-        st.write("Explore my projects, skills, certifications, and more through the menu on the left.")
+        st.title("Welcome to My Portfolio!")
+        st.write("Explore my projects, skills, certifications, and more.")
     elif option == "Career Objective":
         st.subheader("🎯 Career Objective")
-        st.write("Analytical beginner with expertise in data collection, cleansing, and analysis...")
+        st.write(
+            "Analytical beginner with expertise in data collection, "
+            "cleansing, and analysis. Skilled in deriving actionable "
+            "insights, improving efficiency, and facilitating data-driven decision-making."
+        )
     elif option == "Education":
         st.subheader("🎓 Education")
         st.table({
             "Degree": ["B.Tech (CSE)", "+2 Science", "10th"],
             "Institute": [
                 "GIET University", 
-                "Royal Higher Secondary School of Science and Technology, Bhubaneswar", 
-                "S.N High School, Basta, Balasore"
+                "Royal Higher Secondary School", 
+                "S.N High School, Balasore"
             ],
             "Year": ["2025", "2021", "2019"],
             "Score": ["7.96 CGPA", "85%", "80%"]
@@ -75,7 +68,7 @@ def display_content(option):
         st.subheader("💻 Skills & Technology")
         st.write("""
             - **Languages**: Python, SQL, NumPy, Pandas, Matplotlib, Seaborn, Streamlit  
-            - **Tools & Software**: PowerBI, Tableau, MS-Excel  
+            - **Tools**: PowerBI, Tableau, MS-Excel  
             - **Core Skills**: Machine Learning, Data Science, EDA, Web Scraping, Automation
         """)
     elif option == "Internships":
@@ -85,32 +78,29 @@ def display_content(option):
            - Telemetry Data Analysis & Modelling with 95% prediction accuracy.
 
         2. **SAMSUNG Innovation Campus** (June 2023 - August 2023)  
-           - Developed a disease prediction site with ML algorithms for diseases like heart disease and diabetes.
+           - Developed a disease prediction website using Streamlit.
 
         3. **CTTC Bhubaneswar** (June 2023 - July 2023)  
-           - Completed projects in data cleaning, EDA, and statistical analysis with dashboards in Power BI.
+           - Completed EDA and statistical analysis projects using Power BI and Excel.
         """)
     elif option == "Projects":
         st.subheader("🧑‍💻 Projects")
         st.markdown("""
         1. **Disaster Response Intelligence** (July 2024 - Present)  
-           - Real-time message classification for disaster response with 36 categories.
+           - Real-time classification of disaster-related messages.
 
         2. **RainPredict - Intelligent Rainfall Forecasting** (Jan 2024 - May 2024)  
-           - Forecasted rainfall using ML models for agricultural planning.
+           - Developed rainfall forecasting models using ML techniques.
         """)
     elif option == "Certifications":
         st.subheader("📜 Certifications")
-
         col1, col2 = st.columns(2)
         with col1:
-            st.image("certificate1.png", caption="Google Data Analytics Certification", use_column_width=True)
+            st.image("certificate1.png", caption="Google Data Analytics")
+            st.image("certificate3.png", caption="Remote Sensing Analytics - ISRO")
         with col2:
-            st.image("certificate2.png", caption="AI & ML Workshop - IIT Bhubaneswar", use_column_width=True)
-        with col1:
-            st.image("certificate3.png", caption="Remote Sensing Analytics - ISRO", use_column_width=True)
-        with col2:
-            st.image("certificate4.png", caption="Kaggle Data Analyst Certification", use_column_width=True)
+            st.image("certificate2.png", caption="AI & ML Workshop - IIT Bhubaneswar")
+            st.image("certificate4.png", caption="Kaggle Data Analyst Certification")
     elif option == "Soft Skills & Hobbies":
         st.subheader("🤝 Soft Skills & Hobbies")
         st.write("""
@@ -126,10 +116,5 @@ def display_content(option):
         - **Permanent Address**: Balasore, Odisha
         """)
 
-# Display Content
-if selected:
-    display_content(selected)
-else:
-    st.subheader("Welcome to my Portfolio!")
-    st.write("Use the menu on the left to explore my work.")
-
+# Display the Selected Content
+display_content(selected)
