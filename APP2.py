@@ -26,6 +26,14 @@ st.markdown(
     <style>
         .header { font-size: 50px; color: #ff6347; font-weight: bold; }
         .subheader { font-size: 20px; color: #555; margin-bottom: 20px; }
+        .certificate-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
     </style>
     """,
     unsafe_allow_html=True,
@@ -39,16 +47,17 @@ st.markdown(
     "[📧 Email](mailto:adityapupun535@gmail.com) | [🔗 LinkedIn](https://www.linkedin.com/in/kumar34aditya/) | [💻 GitHub](https://github.com/Kumar21Aditya)"
 )
 
-# Section Display Based on Sidebar Selection
+# Sidebar Section Logic
 if menu == "Home":
-    st.image("https://source.unsplash.com/600x300/?data,technology", caption="Building with Passion 🚀", use_column_width=True)
+    st.subheader("Welcome to my Portfolio!")
+    st.write("Explore my projects, skills, certifications, and more through the menu on the left.")
 
 elif menu == "Career Objective":
     st.subheader("🎯 Career Objective")
     st.write(
         "Analytical beginner with expertise in data collection, cleansing, and analysis. "
         "Proficient in Python, SQL, and data visualization tools. Skilled in deriving actionable insights, "
-        "improving operational efficiency, and enabling data-driven decision-making with strong communication skills."
+        "improving operational efficiency, and enabling data-driven decision-making."
     )
 
 elif menu == "Education":
@@ -65,7 +74,7 @@ elif menu == "Education":
     })
 
 elif menu == "Skills & Technology":
-    st.subheader("💻 Technology Known")
+    st.subheader("💻 Skills & Technology")
     st.write(
         """
         - **Languages**: Python, SQL, NumPy, Pandas, Matplotlib, Seaborn, Streamlit  
@@ -88,7 +97,7 @@ elif menu == "Internships":
     """)
 
 elif menu == "Projects":
-    st.subheader("🧑‍💻 Academic Projects")
+    st.subheader("🧑‍💻 Projects")
     st.markdown("""
     1. **Disaster Response Intelligence** (July 2024 - Present)  
        - Real-time message classification for disaster response with 36 categories.
@@ -99,34 +108,42 @@ elif menu == "Projects":
 
 elif menu == "Certifications":
     st.subheader("📜 Certifications")
-    st.write(
-        """
-        - Google Data Analytics Professional Certification - Google  
-        - AI & ML Workshop Certification - IIT Bhubaneswar  
-        - Remote Sensing Data Analytics on Agriculture - ISRO  
-        - Kaggle Data Analyst Certification - Kaggle
-        """
-    )
+
+    # Displaying certifications in 4 cards (boxes)
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown('<div class="certificate-card">', unsafe_allow_html=True)
+        st.image("certificate1.png", caption="Google Data Analytics Certification", use_column_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col2:
+        st.markdown('<div class="certificate-card">', unsafe_allow_html=True)
+        st.image("certificate2.png", caption="AI & ML Workshop Certification - IIT Bhubaneswar", use_column_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col1:
+        st.markdown('<div class="certificate-card">', unsafe_allow_html=True)
+        st.image("certificate3.png", caption="Remote Sensing Analytics - ISRO", use_column_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    with col2:
+        st.markdown('<div class="certificate-card">', unsafe_allow_html=True)
+        st.image("certificate4.png", caption="Kaggle Data Analyst Certification", use_column_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
 
 elif menu == "Soft Skills & Hobbies":
     st.subheader("🤝 Soft Skills & Hobbies")
-    st.write(
-        """
-        - **Soft Skills**: Quick Learner, Team Player  
-        - **Hobbies**: Cooking, Sports
-        """
-    )
+    st.write("""
+    - **Soft Skills**: Quick Learner, Team Player  
+    - **Hobbies**: Cooking, Sports
+    """)
 
 elif menu == "Personal Information":
     st.subheader("📝 Personal Information")
-    st.write(
-        """
-        - **Date of Birth**: 01/04/2004  
-        - **Father’s Name**: Mr. Keshab Chandra Behera  
-        - **Languages Known**: English, Hindi, Odia  
-        - **Permanent Address**: Balasore, Odisha  
-        """
-    )
-
-# Footer Section (Always Visible)
-st.markdown('<div style="text-align: center; font-style: italic; color: #aaa;">📍 Gunupur, Odisha | 📅 14/10/2024 | Made with ❤️ using Streamlit</div>', unsafe_allow_html=True)
+    st.write("""
+    - **Date of Birth**: 01/04/2004  
+    - **Father’s Name**: Mr. Keshab Chandra Behera  
+    - **Languages Known**: English, Hindi, Odia  
+    - **Permanent Address**: Balasore, Odisha  
+    """)
