@@ -3,13 +3,13 @@ import random
 
 # Page Configuration
 st.set_page_config(
-    page_title="Hey Love! ❤️",
+    page_title="Hey Penguin! ❤️",
     page_icon="🌸",
     layout="centered",
 )
 
 # Header
-st.title("🌷 Hey, Beautiful! 🌷")
+st.title("🌷 Hey, Beautiful Naina! 🌷")
 st.subheader("Welcome to your special little place on the web ✨")
 st.write("**Just for you, because you deserve the best!** 🥰")
 
