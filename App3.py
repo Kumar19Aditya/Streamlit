@@ -1,22 +1,23 @@
 import streamlit as st
 
-# Title and Subtitle for the app
-st.title("👋 Welcome to the Fun Profile Builder!")
-st.subheader("Please provide some basic details about yourself.")
+# Fun title and subtitle
+st.title("🎉 Welcome to Your Fun Profile 🎉")
+st.subheader("Let's learn some fun things about you! 😁")
 
-# Collecting user inputs
+# Collecting user inputs in a playful way
 name = st.text_input("What's your name?", "")
-age = st.number_input("How old are you?", min_value=1, max_value=100, step=1)
-qualification = st.selectbox(
-    "Your highest qualification:",
-    ["High School", "Diploma", "Undergraduate", "Postgraduate", "PhD"]
-)
-skills = st.text_area("List your skills (comma-separated)", "")
+food = st.text_input("🍕 What's your favorite food?")
+dream = st.text_area("🌟 What's your biggest dream?")
+hobby = st.text_input("🎨 What's your favorite hobby?")
+superpower = st.text_input("🦸 If you could have one superpower, what would it be?")
 
-# Submit button
+# Submit button with fun message
 if st.button("Submit"):
-    # Display the results with the fun message
     if name.strip():
-        st.success(f"Your profile is ready, {name} BSDK! 😎")
+        # Playful prank message
+        st.balloons()  # Adds a balloon effect for fun!
+        st.success(f"Nice to know all this, {name}! 🎉")
+        st.error("But... Go and study first! 📚🤣")
     else:
-        st.warning("Please enter your name to complete the profile.")
+        st.warning("Oops! I need to know your name first. 😅")
+
