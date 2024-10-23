@@ -1,23 +1,24 @@
 import streamlit as st
+import fitz  # PyMuPDF
 
-# Fun title and subtitle
-st.title("🎉 Welcome to Your Fun Profile 🎉")
-st.subheader("Let's learn some fun things about you! 😁")
+# Set up the title and instructions
+st.title("PDF Content Viewer")
+st.write("Upload a PDF file to extract and display its text content.")
 
-# Collecting user inputs in a playful way
-name = st.text_input("What's your name?", "")
-food = st.text_input("🍕 What's your favorite food?")
-dream = st.text_area("🌟 What's your biggest dream?")
-hobby = st.text_input("🎨 What's your favorite hobby?")
-superpower = st.text_input("🦸 If you could have one superpower, what would it be?")
+# File uploader widget
+uploaded_file = st.file_uploader("Choose a PDF file", type=["pdf"])
 
-# Submit button with fun message
-if st.button("Submit"):
-    if name.strip():
-        # Playful prank message
-        st.balloons()  # Adds a balloon effect for fun!
-        st.success(f"Nice to know all this, {name}! 🎉")
-        st.error("But... Go and study first! 📚🤣")
+if uploaded_file is not None:
+    # Open the uploaded PDF file
+    with fitz.open(stream=uploaded_file.read(), filetype="pdf") as doc:
+        content = ""
+        # Extract text from each page
+        for page_num in range(doc.page_count):
+            page = doc.load_page(page_num)
+            content += page.get_text()
+
+    # Display the extracted text
+    if content.strip():
+        st.text_area("PDF Content:", content, height=400)
     else:
-        st.warning("Oops! I need to know your name first. 😅")
-
+        st.error("No readable text found in the PDF.")
